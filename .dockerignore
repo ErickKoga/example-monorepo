@@ -15,8 +15,19 @@ apps/api/dist
 .env.test.local
 .env.production.local
 
+# Ignore version control files
+.git
+.gitignore
+**/.git
+**/.gitignore
+
 # Ignore editor-specific files
 .vscode
 
 # Ignore macOS system files
 .DS_Store
+
+# Ignore Docker dev files
+docker-compose.yml
+**/Dockerfile
+.dockerignore

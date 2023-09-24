@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  web:
+    container_name: web
+    build:
+      context: .
+      dockerfile: ./apps/web/Dockerfile
+      args:
+        - NODE_VERSION=${NODE_VERSION}
+    ports:
+      - ${WEB_PORT}:${WEB_PORT}
+    env_file:
+      - .env
+    networks:
+      - network
+    restart: always
+
+  api:
+    container_name: api
+    build:
+      context: .
+      dockerfile: ./apps/api/Dockerfile
+      args:
+        - NODE_VERSION=${NODE_VERSION}
+    ports:
+      - ${API_PORT}:${API_PORT}
+    env_file:
+      - .env
+    networks:
+      - network
+    restart: always
+
+volumes:
+  volume:
+
+networks:
+  network:
