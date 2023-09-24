@@ -5,7 +5,8 @@ services:
     container_name: web
     build:
       context: .
-      dockerfile: ./apps/web/Dockerfile
+      dockerfile: ./Dockerfile
+      target: web-runner
       args:
         - NODE_VERSION=${NODE_VERSION}
     ports:
@@ -20,13 +21,32 @@ services:
     container_name: api
     build:
       context: .
-      dockerfile: ./apps/api/Dockerfile
+      dockerfile: ./Dockerfile
+      target: api-runner
       args:
         - NODE_VERSION=${NODE_VERSION}
     ports:
       - ${API_PORT}:${API_PORT}
     env_file:
       - .env
+    networks:
+      - network
+    restart: always
+    depends_on:
+      - db
+
+  db:
+    container_name: db
+    image: postgres:${DB_VERSION}
+    ports:
+      - ${DB_PORT}:5432
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes: 
+      - volume:/var/lib/postgresql/data
+      - ./packages/database/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - network
     restart: always

@@ -7,9 +7,17 @@
   "private": true,
   "scripts": {
     "dev": "dotenv -c development -- pnpm run -r dev",
-    "build": "pnpm run -r build",
-    "start": "dotenv -- pnpm run -r start",
-    "lint": "pnpm run -r lint"
+    "dev:web": "dotenv -c development -- pnpm run --filter web dev",
+    "dev:api": "dotenv -c development -- pnpm run --filter api dev",
+    "build": "dotenv -c -- pnpm run -r build",
+    "build:web": "dotenv -c -- pnpm run --filter web build",
+    "build:api": "dotenv -c -- pnpm run --filter api build",
+    "start": "dotenv -c -- pnpm run -r start",
+    "start:web": "dotenv -c -- pnpm run --filter web start",
+    "start:api": "dotenv -c -- pnpm run --filter api start",
+    "lint": "dotenv -c -- pnpm run -r lint",
+    "lint:web": "dotenv -c -- pnpm run --filter web lint",
+    "lint:api": "dotenv -c -- pnpm run --filter api lint"
   },
   "dependencies": {
     "dotenv-cli": "^7.3.0"
