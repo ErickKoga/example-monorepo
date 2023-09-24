@@ -18,6 +18,7 @@ RUN --mount=type=cache,target=/tmp/cache pnpm fetch
 COPY . .
 RUN --mount=type=cache,target=/tmp/cache \
   CI=1 pnpm install --no-optional && \
+  pnpm db:generate && \
   pnpm build && \
   pnpm --filter=api --prod deploy ./deploy/api && \
   pnpm --filter=web --prod deploy ./deploy/web

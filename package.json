@@ -17,7 +17,14 @@
     "start:api": "dotenv -c -- pnpm run --filter api start",
     "lint": "dotenv -c -- pnpm run -r lint",
     "lint:web": "dotenv -c -- pnpm run --filter web lint",
-    "lint:api": "dotenv -c -- pnpm run --filter api lint"
+    "lint:api": "dotenv -c -- pnpm run --filter api lint",
+    "db:migrate:deploy": "dotenv -c -- pnpm run --filter database migrate:deploy",
+    "db:migrate:dev": "dotenv -c -- pnpm run --filter database migrate:dev",
+    "db:migrate:reset": "dotenv -c -- pnpm run --filter database migrate:reset",
+    "db:push": "dotenv -c -- pnpm run --filter database push",
+    "db:seed": "dotenv -c -- pnpm run --filter database seed",
+    "db:generate": "dotenv -c -- pnpm run --filter database generate",
+    "db:studio": "dotenv -c -- pnpm run --filter database studio"
   },
   "dependencies": {
     "dotenv-cli": "^7.3.0"
